@@ -1,0 +1,19 @@
+services:
+  front:
+    build:
+      context: .
+      args:
+        WORKDIR: ${WORKDIR}
+        API_URL: "http://localhost:${API_PORT}/"
+    container_name: share-favplace-front
+    command: sh -c "npm run dev"
+    volumes:
+      - .:/${WORKDIR}
+    ports:
+      - "${FRONT_PORT}:${FRONT_PORT}"
+    networks:
+      - front
+
+networks:
+  front:
+    external: false
