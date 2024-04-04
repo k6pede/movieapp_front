@@ -1,7 +1,9 @@
-import { Suspense } from "react"
+import Image from 'next/image'
 
+/** 人気映画TOP10 */
 async function TopMovies() {
     const url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
+
     const response = await fetch(url + '/movie/top').then((response) => response.json())
     const movies = response.info.results
 
@@ -12,9 +14,9 @@ async function TopMovies() {
     return (
         <div>
             {movies.map((movie: any) =>
-            <div>
-                <p className="text" key={movie.id}>{movie.original_title}</p>
-                <img src={imagePath + movie.poster_path} alt="Movie Poster" />
+            <div key={movie.id}>
+                <p className="text">{movie.original_title}</p>
+                <Image src={`${imagePath}/${movie.poster_path}`} alt="Movie Poster" width={200} height={200}/>
             </div>
             )}
         </div>
