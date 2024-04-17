@@ -1,23 +1,24 @@
+// 'use client'
 import Image from 'next/image'
+import { useEffect, useState } from 'react';
+import styles from './style.module.scss'
+import MovieCard from '../MovieCard/MovieCard';
+import ExMovieCard from '../ExpandMovieCard/ExpandMovieCard';
 
-/** 人気映画TOP10 */
+const BLOCK_NAME = 'movies'
+
 async function TopMovies() {
     const url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 
     const response = await fetch(url + '/movie/top').then((response) => response.json())
-    const movies = response.info.results
+    const movies = response.results
 
-    const imagePath = `https://image.tmdb.org/t/p/w300_and_h450_bestv2/`
 
-    console.log(typeof(movies))
 
     return (
-        <div>
+        <div className={styles[`${BLOCK_NAME}-div`]}>
             {movies.map((movie: any) =>
-            <div key={movie.id}>
-                <p className="text">{movie.original_title}</p>
-                <Image src={`${imagePath}/${movie.poster_path}`} alt="Movie Poster" width={200} height={200}/>
-            </div>
+                <ExMovieCard movie={movie} />
             )}
         </div>
     )
