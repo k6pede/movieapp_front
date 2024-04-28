@@ -1,9 +1,5 @@
-
+import Login from "@/app/components/Login";
 
 export default function Page() {
-    return (
-        <div>
-            login
-        </div>
-    )
+    return <Login />
 }
