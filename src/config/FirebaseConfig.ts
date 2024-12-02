@@ -19,9 +19,9 @@ const firebaseConfig = {
     messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
     appId: process.env.NEXT_PUBLIC_APPID,
     measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID
-};
+}
 let auth: Auth
-// Initialize Firebase
+// Initialize Firebase  
 if (getApps().length === 0) {
     const app = initializeApp(firebaseConfig)
     auth = getAuth(app)
